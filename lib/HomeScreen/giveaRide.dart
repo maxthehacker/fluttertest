@@ -4,7 +4,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geocode/geocode.dart';
+// import 'package:geocode/geocode.dart';
+// import 'package:geolocator/geolocator.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:klndrive/HomeScreen/autocompletePrediction.dart';
 import 'package:klndrive/sharedPreferences/sharedPreferences.dart';
@@ -74,8 +76,10 @@ class _FindaRideState extends State<FindaRide> {
   }
 
   void getCurrentPosition() async {
-    Position currentPosition = await GeolocatorPlatform.instance
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    // Position currentPosition = await GeolocatorPlatform.instance
+    //     .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position currentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
     setState(() {
       position = currentPosition;
       mapToggle = true;
